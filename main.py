@@ -18,9 +18,14 @@ def get_letter_count(word_list) -> dict:
                 letters[temp] += 1
     return letters
 
+def generate_report(full_path):
+    words = get_word_list(full_path)
+    letters = get_letter_count(words)
+    letters = dict(sorted(letters.items(), reverse=True, key=lambda item: item[1]))
+    for letter in letters:
+        print(f"Character '{letter}'  was found {letters[letter]} times")
+
 def main():
-    a = get_word_list("./BOOKS/frankenstein.txt")
-    b = get_letter_count(a)
-    print(b)
+    generate_report("./BOOKS/frankenstein.txt")
 
 main()
